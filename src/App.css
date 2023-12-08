@@ -1,0 +1,197 @@
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+.logi {
+    margin-left: 40px;
+
+}
+
+.menu{
+    width: 380px;
+    height: 250px;
+}
+.quantity-group{
+    display: flex;
+    align-items: center;
+gap: 10px;
+justify-content: center;
+}
+.moin{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 17px;
+    padding: 7px 20px;
+  font-weight: 500;
+  background: #1F2937;
+  color: white;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.6em;
+  cursor: pointer;
+}
+.quantite{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 17px;
+    padding: 7px 20px;
+  font-weight: 500;
+  background: #1F2937;
+  color: white;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.6em;
+  cursor: pointer;
+}
+.plus{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 17px;
+    padding: 7px 20px;
+  font-weight: 500;
+  background: #1F2937;
+  color: white;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.6em;
+  cursor: pointer;
+}
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.shopsblocks {
+    display: flex; /* Afficher les blocs en ligne */
+    overflow-x: auto; /* Activer la barre de défilement horizontale si nécessaire */
+    white-space: nowrap; /* Empêcher le texte de passer à la ligne */
+    width: 100%; /* Largeur maximale du contenant, ajustez selon vos besoins */
+}
+
+.shopsblocks {
+    flex: 0 0 auto; /* Les blocs ne changent pas de largeur */
+    margin-right: 20px; /* Marge entre les blocs, ajustez selon vos besoins */
+}
+.cart-icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .bubble {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 4px 9px;
+    font-size: 12px;
+    margin-bottom: 31px;
+  }
+
+  /* Styliser la liste des restaurants */
+.restaurants--list {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+  }
+  
+  /* Styliser chaque élément restaurant */
+  .restaurant-item {
+    flex: 0 1 200px; /* Flexibilité et base width de chaque élément */
+    text-align: center; /* Centrer le texte */
+    padding: 10px; /* Padding autour de chaque élément */
+    width: 100%;
+
+  }
+  
+  /* Styliser les images des restaurants */
+  .restaurant-item img {
+    width: 100%;
+    height: auto; /* Garder le ratio de l'image */
+    border-radius: 5px; /* Arrondir les coins de l'image */
+    
+  }
+  
+  .error {
+    color: red;
+    margin-top: 5px;
+  }
+  
+  /* Styliser le formulaire de mise à jour du profil */
+.update-profile-form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .update-profile-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+  
+  .update-profile-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+  }
+  
+  /* Styliser le bouton de mise à jour */
+  .update-profile-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .update-profile-form button:hover {
+    background-color: #003d82;
+  }
+  
+  /* Styliser les messages d'erreur */
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: -15px;
+    margin-bottom: 10px;
+  }
+  
