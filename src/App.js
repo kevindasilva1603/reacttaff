@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Monheader } from "./Monheader.js";
 import CountdownTimer from "./CountdownTimer";
 import UpdateProfileForm from "./UpdateProfileForm";
 import "./main.css";
@@ -12,8 +11,6 @@ import Macdo from "./images/images.jpg";
 import Kebab from "./images/kebab.jpg";
 import KFC from "./images/kfc.jpeg";
 import Sandwich from "./images/sandwich.jpg";
-
-import * as utilities from "./utilities.js";
 import { BurgerBlock } from "./burger.js";
 
 function App() {
@@ -28,29 +25,20 @@ function App() {
     };
 
     const restaurantsRef = useRef([
-        { name: "Menu MacDo", isOpen: true, image: Macdo },
-        { name: "Kebab", isOpen: false, image: Kebab },
-        { name: "KFC", isOpen: true, image: KFC },
-        { name: "Sandwich", isOpen: false, image: Sandwich },
+        { name: "Menu MacDo", isOpen: false, image: Macdo, timer: 10 },
+        { name: "Kebab", isOpen: false, image: Kebab, timer: 120 },
+        { name: "KFC", isOpen: false, image: KFC, timer: 120 },
+        { name: "Sandwich", isOpen: false, image: Sandwich, timer: 90 },
     ]);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            const updatedRestaurants = restaurantsRef.current.map(
-                (restaurant) => {
-                    return { ...restaurant, isOpen: Math.random() < 0.5 };
-                }
-            );
-            restaurantsRef.current = updatedRestaurants;
-        }, 5000);
-
-        return () => clearInterval(interval);
-    }, []);
+    const handleTimeout = (index) => {
+        const updatedRestaurants = [...restaurantsRef.current];
+        updatedRestaurants[index].isOpen = true;
+        restaurantsRef.current = updatedRestaurants;
+    };
 
     return (
         <Router>
-            <Monheader />
-            <nav></nav>
             <div className='App'>
                 <header>
                     <div className='container'>
@@ -63,11 +51,6 @@ function App() {
                                         alt='Logo'
                                     />
                                 </Link>
-                                <button className='info-button'>
-                                    <Link to='/update-profile'>
-                                        Information
-                                    </Link>
-                                </button>
                             </div>
                             <div className='header--address'>
                                 <input
@@ -106,13 +89,6 @@ function App() {
                         path='/'
                         element={
                             <>
-                                <div className='countdown'>
-                                    <h2>
-                                        Compte à Rebours Jusqu'à la Nouvelle
-                                        Année
-                                    </h2>
-                                    <CountdownTimer targetDate='2024-01-01T00:00:00' />
-                                </div>
                                 <section className='shops'>
                                     <div className='container'>
                                         <div className='shops--title'>
@@ -175,6 +151,18 @@ function App() {
                                                                 ? "Ouvert"
                                                                 : "Fermé"}
                                                         </p>
+                                                        {!restaurant.isOpen && (
+                                                            <CountdownTimer
+                                                                duration={
+                                                                    restaurant.timer
+                                                                }
+                                                                onTimeout={() =>
+                                                                    handleTimeout(
+                                                                        index
+                                                                    )
+                                                                }
+                                                            />
+                                                        )}
                                                     </div>
                                                 )
                                             )}

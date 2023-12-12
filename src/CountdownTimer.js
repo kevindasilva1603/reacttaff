@@ -1,52 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-const CountdownTimer = ({ targetDate }) => {
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(targetDate));
+const CountdownTimer = ({ duration, onTimeout }) => {
+    const [timeLeft, setTimeLeft] = useState(duration);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setTimeLeft(calculateTimeLeft(targetDate));
-    }, 1000);
+    useEffect(() => {
+        // Lorsque le compte à rebours atteint 0, appeler onTimeout
+        if (timeLeft === 0) {
+            onTimeout();
+            return;
+        }
 
-    // Nettoyer le timer
-    return () => clearTimeout(timer);
-  });
+        // Décrémenter le compte à rebours chaque seconde
+        const timer = setTimeout(() => {
+            setTimeLeft(timeLeft - 1);
+        }, 1000);
 
-  // Fonction pour calculer le temps restant
-  function calculateTimeLeft(date) {
-    const difference = +new Date(date) - +new Date();
-    let timeLeft = {};
+        // Nettoyer le timer
+        return () => clearTimeout(timer);
+    }, [timeLeft, onTimeout]);
 
-    if (difference > 0) {
-      timeLeft = {
-        heures: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        secondes: Math.floor((difference / 1000) % 60),
-      };
-    }
-
-    return timeLeft;
-  }
-
-  // Formatage du temps restant
-  const timerComponents = [];
-  Object.keys(timeLeft).forEach((interval) => {
-    if (!timeLeft[interval]) {
-      return;
-    }
-
-    timerComponents.push(
-      <span>
-        {timeLeft[interval]} {interval}{" "}
-      </span>
-    );
-  });
-
-  return (
-    <div>
-      {timerComponents.length ? timerComponents : <span>Temps écoulé!</span>}
-    </div>
-  );
+    // Affichage du temps restant ou du message 'Ouvert!'
+    return <div>{timeLeft > 0 ? `${timeLeft} secondes` : "Ouvert!"}</div>;
 };
 
 export default CountdownTimer;
